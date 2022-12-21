@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { CustomForm, TaskList } from './components/index';
+//custom components
+import { TextInput, TaskList } from './components/index';
 //custom hooks
 import useLocalStorage from './hooks/useLocalStorage';
 
 const App = () => {
   const [tasks, setTasks] = useLocalStorage('react-todo.tasks', []);
   const [sorted, setSorted] = useState(false);
-
+  //Task Form Function
   const addTask = (task) => {
     console.log(task);
     setTasks((prevState) => [...prevState, task]);
@@ -22,17 +23,14 @@ const App = () => {
     );
   };
 
-  // const sortTask = (id) => {
-  //   setTasks((prevState) => prevState.filter((task) => task.checked === false));
-  // };
-
   return (
     <div className='bg-[#8f90cf] h-screen flex justify-center py-6'>
-      <div className='w-[70%] bg-[#eff6fe] px-10 py-8 rounded-[10px] overflow-y-scroll'>
+      <div className='w-[70%] bg-gradient-to-b from-[#e0ebff] to-[#f9e0ff] px-10 py-8 rounded-[10px] overflow-y-scroll'>
         <div className='mb-[20rem]'>
           <h2 className='text-4xl bolder text-[#7691dc] pb-2'>Todo List</h2>
           <span className='px-1 text-gray-500 '>Add Thing to do</span>
           <hr className='border-10 border-[#7691dc] m-3' />
+
           {tasks && (
             <TaskList
               tasks={tasks}
@@ -58,7 +56,7 @@ const App = () => {
             </label>
           </div>
         </div>
-        <CustomForm addTask={addTask} />
+        <TextInput addTask={addTask} />
       </div>
     </div>
   );

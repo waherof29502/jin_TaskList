@@ -1,4 +1,3 @@
-import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers';
 import React from 'react';
 import { TaskItem } from './index';
 

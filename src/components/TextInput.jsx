@@ -1,35 +1,42 @@
 import React, { useState } from 'react';
 import { RiAddBoxFill } from 'react-icons/ri';
-const EditForm = ({ editedTask, updateTask }) => {
-  const [updatedTaskName, setUpdatedTaskName] = useState(editedTask.name);
+
+const TextInput = ({ addTask }) => {
+  const [task, setTask] = useState('');
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    addTask({
+      name: task,
+      checked: false,
+      id: Date.now(),
+    });
+    setTask('');
   };
   return (
-    <div role='dialog' aria-labelledby='editTask'>
+    <div className='sticky bottom-1 w-full '>
+      <h3>Add to List</h3>
       <form
         className='flex items-center justify-center'
         onSubmit={handleFormSubmit}
       >
         <input
           type='text'
-          id='editTask'
+          id='task'
           className='rounded-[5px] w-full p-[10px] border-none outline-none bg-white text-black mb-[10px]'
-          value={updatedTaskName}
-          onInput={(e) => setUpdatedTaskName(e.target.value)}
+          value={task}
+          onInput={(e) => setTask(e.target.value)}
           required
           autoFocus
           maxLength={30}
-          placeholder='Update Task'
+          placeholder='Add to List'
         />
         <RiAddBoxFill
           className='text-[#7691dc] text-[4rem] cursor-pointer ml-[20px] mb-[10px]'
-          aria-label={`Confirm edited task to now read ${updatedTaskName}`}
-          type='submit'
+          onClick={handleFormSubmit}
         />
       </form>
     </div>
   );
 };
 
-export default EditForm;
+export default TextInput;
