@@ -5,7 +5,7 @@ const TaskList = ({ tasks, deleteTask, toggleTask, sorted }) => {
   return (
     <div className='flex-1'>
       {/* sort for latest post */}
-      {sorted ? (
+      {/* {sorted ? (
         <div>
           <ul>
             {tasks
@@ -13,8 +13,8 @@ const TaskList = ({ tasks, deleteTask, toggleTask, sorted }) => {
               .sort((a, b) => b.id - a.id)
               .map((task) => (
                 <TaskItem
-                  key={task.id}
                   task={task}
+                  id={task.id}
                   deleteTask={deleteTask}
                   toggleTask={toggleTask}
                 />
@@ -26,30 +26,29 @@ const TaskList = ({ tasks, deleteTask, toggleTask, sorted }) => {
               .sort((a, b) => b.id - a.id)
               .map((task) => (
                 <TaskItem
-                  key={task.id}
                   task={task}
+                  id={task.id}
                   deleteTask={deleteTask}
                   toggleTask={toggleTask}
                 />
               ))}
           </ul>
         </div>
-      ) : (
-        <div>
-          <ul>
-            {tasks
-              .sort((a, b) => b.id - a.id)
-              .map((task) => (
-                <TaskItem
-                  key={task.id}
-                  task={task}
-                  deleteTask={deleteTask}
-                  toggleTask={toggleTask}
-                />
-              ))}
-          </ul>
-        </div>
-      )}
+      ) : ( */}
+      <div>
+        <ul>
+          {tasks
+            .sort((a, b) => a.id - b.id)
+            .map((task) => (
+              <TaskItem
+                task={task}
+                id={task.id}
+                deleteTask={deleteTask}
+                toggleTask={toggleTask}
+              />
+            ))}
+        </ul>
+      </div>
     </div>
   );
 };

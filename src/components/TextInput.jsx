@@ -1,14 +1,18 @@
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../firebase';
 import React, { useState } from 'react';
 import { RiAddBoxFill } from 'react-icons/ri';
 
 const TextInput = ({ addTask }) => {
   const [task, setTask] = useState('');
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    addTask({
+    if (task === '') {
+      alert('Please enter');
+    }
+    await addDoc(collection(db, 'tasks'), {
       name: task,
       checked: false,
-      id: Date.now(),
     });
     setTask('');
   };
